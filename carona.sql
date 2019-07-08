@@ -12,8 +12,8 @@ create table CARONA (
 	CONSTRAINT CARONA_PK PRIMARY KEY (ID)
 );
 
-insert into CARONA (ID, MOTORISTA_ID, CARRO_ID, ORIGEM, DESTINO, VAGAS, DIA, HORARIO, NOTA) values (1, 'Alasteir', 'Farleigh', 'afarleigh0@google.com.br', 'Male', 3, '05/03/2019', '19:38', 3.4);
-insert into CARONA (ID, MOTORISTA_ID, CARRO_ID, ORIGEM, DESTINO, VAGAS, DIA, HORARIO, NOTA) values (2, 'Gerrie', 'Cattermoul', 'gcattermoul1@jiathis.com', 'Male', 4, '01/12/2019', '02:52', 3.2);
-insert into CARONA (ID, MOTORISTA_ID, CARRO_ID, ORIGEM, DESTINO, VAGAS, DIA, HORARIO, NOTA) values (3, 'Broddie', 'Aloshikin', 'baloshikin2@tinypic.com', 'Male', 2, '07/08/2019', '20:44', 3.4);
-insert into CARONA (ID, MOTORISTA_ID, CARRO_ID, ORIGEM, DESTINO, VAGAS, DIA, HORARIO, NOTA) values (4, 'Yvonne', 'Darville', 'ydarville3@netvibes.com', 'Female', 3, '29/05/2019', '06:08', 3.8);
-insert into CARONA (ID, MOTORISTA_ID, CARRO_ID, ORIGEM, DESTINO, VAGAS, DIA, HORARIO, NOTA) values (5, 'Keeley', 'Charpling', 'kcharpling4@google.ca', 'Female', 1, '19/10/2019', '03:37', 4.4);
+insert into CARONA (ID, MOTORISTA_ID, CARRO_ID, ORIGEM, DESTINO, VAGAS, DIA, HORARIO, NOTA) values (1, 20, 60, 8, 24, 3, '07/01/2019', '19:57', 4.9);
+insert into CARONA (ID, MOTORISTA_ID, CARRO_ID, ORIGEM, DESTINO, VAGAS, DIA, HORARIO, NOTA) values (2, 4, 49, 52, 30, 5, '26/08/2019', '03:43', 3.6);
+insert into CARONA (ID, MOTORISTA_ID, CARRO_ID, ORIGEM, DESTINO, VAGAS, DIA, HORARIO, NOTA) values (3, 12, 30, 31, 22, 4, '22/07/2019', '17:38', 4.3);
+insert into CARONA (ID, MOTORISTA_ID, CARRO_ID, ORIGEM, DESTINO, VAGAS, DIA, HORARIO, NOTA) values (4, 41, 29, 48, 36, 4, '24/10/2019', '23:21', 4.4);
+insert into CARONA (ID, MOTORISTA_ID, CARRO_ID, ORIGEM, DESTINO, VAGAS, DIA, HORARIO, NOTA) values (5, 17, 81, 53, 18, 3, '28/05/2019', '22:52', 4.7);
