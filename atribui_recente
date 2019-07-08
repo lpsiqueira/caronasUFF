@@ -1,0 +1,14 @@
+CREATE OR REPLACE FUNCTION atribui_nota_recente() RETURNS VOID as $$
+DECLARE
+	cur_motorista CURSOR FOR SELECT motorista_id from motorista;
+	media_motorista_atual float;
+BEGIN
+	for motorista in cur_motorista LOOP
+		SELECT AVG(nota) into media_motorista_atual from carona where carona.motorista_id = motorista.usuario_id
+		and carona.dia >= current_date - interval '7 days';
+	UPDATE motorista SET media_recente = media_motorista_atual WHERE CURRENT OF cur_motorista;
+	RAISE NOTICE 'Media %', media_motorista_atual;
+	END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+
