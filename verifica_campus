@@ -23,5 +23,35 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER valida_locais_carona BEFORE INSERT ON carona
-FOR EACH ROW EXECUTE PROCEDURE verifica_local_campus();
+DROP TRIGGER IF EXISTS verifica_uso_lugar ON lugar;
+CREATE OR REPLACE FUNCTION impede_update_local_utilizado() RETURNS trigger AS $$
+BEGIN
+	IF(EXISTS(SELECT * FROM CARONA WHERE CARONA.ORIGEM = old.ID or CARONA.DESTINO = old.ID)) THEN
+	  	RAISE EXCEPTION 'Proibido modificar locais já utilizados em alguma carona';
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER verifica_uso_lugar
+  BEFORE UPDATE
+  ON lugar
+  FOR EACH ROW
+  EXECUTE PROCEDURE impede_update_local_utilizado();  
+
+DROP TRIGGER IF EXISTS verifica_uso_lugar_del ON lugar;
+CREATE OR REPLACE FUNCTION impede_update_local_utilizado() RETURNS trigger AS $$
+BEGIN
+	IF(EXISTS(SELECT * FROM CARONA WHERE CARONA.ORIGEM = old.ID or CARONA.DESTINO = old.ID)) THEN
+	  	RAISE EXCEPTION 'Proibido deletar locais já utilizados em alguma carona';
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER verifica_uso_lugar_del
+  BEFORE DELETE
+  ON lugar
+  FOR EACH ROW
+  EXECUTE PROCEDURE impede_update_local_utilizado();  
+
