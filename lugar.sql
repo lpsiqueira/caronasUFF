@@ -59,3 +59,8 @@ insert into LUGAR (ID, NOME) values (51, 'São Domingos');
 insert into LUGAR (ID, NOME) values (52, 'São Francisco');
 insert into LUGAR (ID, NOME) values (53, 'Viradouro');
 insert into LUGAR (ID, NOME) values (54, 'Vital Brazil');
+insert into LUGAR (ID, NOME) values (55, 'Gragoatá');
+insert into LUGAR (ID, NOME) values (56, 'Praia Vermelha');
+insert into LUGAR (ID, NOME) values (57, 'Medicina');
+insert into LUGAR (ID, NOME) values (58, 'Valonguinho');
+insert into LUGAR (ID, NOME) values (59, 'Biomédico');
