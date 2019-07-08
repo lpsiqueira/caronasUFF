@@ -1,0 +1,27 @@
+DROP TRIGGER IF EXISTS valida_locais_carona ON carona;
+CREATE OR REPLACE FUNCTION verifica_local_campus() RETURNS trigger AS $$
+
+DECLARE
+	campus_origem_id int;
+	campus_destino_id int;
+	ehCampus int;
+BEGIN
+	SELECT CAMPUS_ID into campus_origem_id from lugar where lugar.id=new.origem;
+	SELECT CAMPUS_ID into campus_destino_id from lugar where lugar.id=new.destino;
+	ehCampus = 0;
+	IF (EXISTS (SELECT * FROM CAMPUS WHERE CAMPUS.ID = campus_origem_id)) THEN
+	   ehCampus = ehCampus + 1;
+	END IF;
+	IF (EXISTS (SELECT * FROM CAMPUS WHERE CAMPUS.ID = campus_destino_id)) THEN
+	   ehCampus = ehCampus + 1;
+	END IF;
+	IF (ehCampus = 1) THEN
+		RAISE NOTICE 'TEM UM CAMPUS';
+		return NEW;
+	END IF;
+	RAISE EXCEPTION 'Utilize um lugar campus e um lugar não campus: número de campus %', ehCampus;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER valida_locais_carona BEFORE INSERT ON carona
+FOR EACH ROW EXECUTE PROCEDURE verifica_local_campus();
