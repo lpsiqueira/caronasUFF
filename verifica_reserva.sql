@@ -4,9 +4,7 @@ DECLARE
     reserva_usuario_id int;
     reserva_carona_id int;
 BEGIN
-	SELECT usuario_id INTO reserva_usuario_id FROM reserva WHERE reserva.usuario_id=NEW.usuario_id;
-	SELECT carona_id INTO reserva_carona_id FROM reserva WHERE reserva.carona_id=NEW.carona_id;
-    IF (EXISTS (SELECT * FROM reserva WHERE reserva.usuario_id=NEW.usuario_id AND reserva.carona_id=NEW.carona_id)) THEN
+	IF (EXISTS (SELECT * FROM reserva WHERE reserva.usuario_id=NEW.usuario_id AND reserva.carona_id=NEW.carona_id)) THEN
         RETURN NEW;
     END IF;
     RETURN NULL;
